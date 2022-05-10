@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 class MissingMeasurement(Exception):
     """
-    excecao quando nao ha medida na linha do dataset
+    Exception raised when there is no measurement on a dataset line
     """
     def __init__(self, line):
         self.message = f'Missing power measurement on line: {line}'
@@ -12,19 +12,19 @@ class MissingMeasurement(Exception):
 
 class MissingDate(Exception):
     """
-    excecao quando falta uma linha no data set
+    Exception raised when there is a missing line on the dataset
     """
     def __init__(self, line):
-        date = line_to_int(line) - timedelta(minutes=1)
+        date = line_to_datetime(line) - timedelta(minutes=1)
         date = date.strftime('%d/%m/%Y;%H:%M:%S;x.xx')
         self.message = f'Expected {date} before {line}'
         super().__init__(self.message)
 
 
-def line_to_int(line: str):
+def line_to_datetime(line: str):
     """
-    :param line: unica linha do dataset
-    :return: int dia, mes, ano, hora, minuto, segundo, float potencia
+    :param line: Single dataset line
+    :return: datetime object from the input line
     """
     date, time, power = line.split(';')
 
@@ -38,9 +38,9 @@ with open('dataset.txt', 'r') as dataset:
     data = dataset.read().splitlines()[1:]
 
 
-date = line_to_int(data[0])  # data inicial
+date = line_to_datetime(data[0])  # inicial date
 for line in data:
-    if date != line_to_int(line):
+    if date != line_to_datetime(line):
         raise MissingDate(line)
 
     date += timedelta(minutes=1)
