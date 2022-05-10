@@ -3,18 +3,18 @@ from paho import mqtt
 import json
 
 
-BROKER = '03ed0310e3cf4a5fbf2ff3c7eb93a267.s1.eu.hivemq.cloud'
-PORT = 8883
+BROKER = ''
+PORT = 1883
 TOPIC = ''
-CLIENT_ID = 'powerdata'
+CLIENT_ID = ''
 USERNAME = ''
 PASSWORD = ''
 
 
 def get_data_from_date(date: str):
     """
-    :param date: string como '6/5/2022'
-    :return: list[float] de todas as medidas salvas daquele dia
+    :param date: string like '6/5/2022'
+    :return: list[float] of all measurements of tha specific day
     """
 
     with open('dataset.txt', 'r') as dataset:
@@ -31,8 +31,8 @@ def get_data_from_date(date: str):
 
 def reduce_data(day: list[float]):
     """
-    :param day: lista de todas as medidas salvas de um dia
-    :return: list[float] das medidas reduzidas a apenas 48 medidas arredondadas
+    :param day: list[float] of all measurements of tha specific day
+    :return: list[float] of all measurements reducend and rounded to only 48 measurements
     """
 
     to_return = []
@@ -40,11 +40,11 @@ def reduce_data(day: list[float]):
     for i, data in enumerate(day):
         mean += data
 
-        if i % 30 == 0 and i != 0:  # media aritmetica de 30 medidas por vez
+        if i % 30 == 0 and i != 0:  # arithmetic mean of 30 measurement at a time
             to_return.append(round(mean / 30, 2))
             mean = 0
 
-        if i == 0:  # adiciona a primeira medida do dia sem efetuar a media
+        if i == 0:  # adds the first measurement of the day without averaging
             to_return.append(round(mean, 2))
 
     return to_return
@@ -52,8 +52,8 @@ def reduce_data(day: list[float]):
 
 def data_to_json(day: list[float]):
     """
-    :param day: lista das medidas reduzidas a apenas 48 medidas
-    :return: json das medidas reduzidas a apenas 48 medidas
+    :param day: list[float] of all measurements
+    :return: json of the measurements
     """
 
     to_return = json.dumps(day)
@@ -96,11 +96,4 @@ def iniciate_MQTT():
     client.loop_forever()
 
 
-day = get_data_from_date('8/5/2022')
-day = reduce_data(day)
-json_day = data_to_json(day)
-print(day)
-print(len(day))
-
-
-# iniciate_MQTT()
+iniciate_MQTT()
