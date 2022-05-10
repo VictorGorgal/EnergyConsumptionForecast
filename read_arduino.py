@@ -11,7 +11,7 @@ node = serial.Serial('/dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0', 1152
 
 def save(data):
     """
-    :param data: medida a ser salva no dataset
+    :param data: measurement to be saved on the dataset.txt
     :return: None
     """
     now = datetime.now()
@@ -32,7 +32,7 @@ def save(data):
 
 def fix():
     """
-    Por algum motivo se nao rodar esta funcao, a primeira linha eh salva sem medida
+    I dont know why but without this func the first line saved will have no measurement
     :return: None
     """
     node.write('send'.encode())
@@ -49,10 +49,10 @@ fix()
 last_minute = -1
 while True:
     minutes = datetime.now().minute
-    if minutes != last_minute:  # requisita a leitura do sensor a cada minuto
+    if minutes != last_minute:  # Requests the sensor read every minute
         node.write('send'.encode())
         recieved = node.readline().decode('ascii').strip()
         save(recieved)
         last_minute = minutes
 
-    sleep(5)  # evita o programa de usar 100% do CPU
+    sleep(5)  # avoids the PC of using 100% CPU
