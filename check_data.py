@@ -34,16 +34,15 @@ def line_to_datetime(line: str):
     return datetime.strptime(f'{date} {time}', '%d/%m/%Y %H:%M:%S')
 
 
-with open('dataset.txt', 'r') as dataset:
-    data = dataset.read().splitlines()[1:]
+if __name__ == '__main__':
+    with open('dataset.txt', 'r') as dataset:
+        data = dataset.read().splitlines()[1:]
 
+    date = line_to_datetime(data[0])  # inicial date
+    for line in data:
+        if date != line_to_datetime(line):
+            raise MissingDate(line)
 
-date = line_to_datetime(data[0])  # inicial date
-for line in data:
-    if date != line_to_datetime(line):
-        raise MissingDate(line)
+        date += timedelta(minutes=1)
 
-    date += timedelta(minutes=1)
-
-
-print('Dataset is ready!')
+    print('Dataset is ready!')
