@@ -10,3 +10,7 @@ The send_data.py takes care of the MQTT communication to send the dataset inform
 Info currently displayed in the app:
 
 ![image](https://user-images.githubusercontent.com/94933775/167912463-8c51e367-5867-4091-b8d1-ef75dcd1cfb0.png)
+
+TODO:
+-display the info visualy using graphs
+-add excessive energy usage warning
