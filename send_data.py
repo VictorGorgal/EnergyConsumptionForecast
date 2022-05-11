@@ -4,8 +4,8 @@ import json
 
 def get_data_from_date(date: str):
     """
-    :param date: string como '6/5/2022'
-    :return: list[float] de todas as medidas salvas daquele dia
+    :param date: string like '6/5/2022'
+    :return: list[float] of all measurements of tha specific day
     """
 
     with open('dataset.txt', 'r') as dataset:
@@ -22,8 +22,8 @@ def get_data_from_date(date: str):
 
 def reduce_data(day: list[float]):
     """
-    :param day: lista de todas as medidas salvas de um dia
-    :return: list[float] das medidas reduzidas a apenas 48 medidas arredondadas
+    :param day: list[float] of all measurements of tha specific day
+    :return: list[float] of all measurements reducend and rounded to only 48 measurements
     """
 
     to_return = []
@@ -31,11 +31,11 @@ def reduce_data(day: list[float]):
     for i, data in enumerate(day):
         mean += data
 
-        if i % 30 == 0 and i != 0:  # media aritmetica de 30 medidas por vez
+        if i % 30 == 0 and i != 0:  # arithmetic mean of 30 measurement at a time
             to_return.append(round(mean / 30, 2))
             mean = 0
 
-        if i == 0:  # adiciona a primeira medida do dia sem efetuar a media
+        if i == 0:  # adds the first measurement of the day without averaging
             to_return.append(round(mean, 2))
 
     return to_return
@@ -43,8 +43,8 @@ def reduce_data(day: list[float]):
 
 def data_to_json(day: list[float]):
     """
-    :param day: lista das medidas reduzidas a apenas 48 medidas
-    :return: json das medidas reduzidas a apenas 48 medidas
+    :param day: list[float] of all measurements
+    :return: json of the measurements
     """
 
     to_return = json.dumps(day)
@@ -71,7 +71,7 @@ def iniciate_MQTT():
     # using MQTT version 5 here, for 3.1.1: MQTTv311, 3.1: MQTTv31
     # userdata is user defined data of any type, updated by user_data_set()
     # client_id is the given name of the client
-    client = paho.Client(client_id=CLIENT_ID, userdata=None, protocol=paho.MQTTv311)
+    client = paho.Client(client_id=CLIENT_ID, userdata=None, protocol=paho.MQTTv31)
 
     # enable TLS for secure connection
     # client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
@@ -88,8 +88,6 @@ def iniciate_MQTT():
 
     # loop_forever for simplicity, here you need to stop the loop manually
     # you can also use loop_start and loop_stop
-
-    print('Ready!')
     client.loop_forever()
 
 
@@ -103,4 +101,3 @@ if __name__ == '__main__':
     PASSWORD = 'zzz'
 
     iniciate_MQTT()
-    
