@@ -60,16 +60,20 @@ def data_to_json(day: list[float]):
     return to_return
 
 
-def on_message(client, userdata, msg):
-    day = get_data_from_date(msg.payload)
+def on_message(client, _, msg):
+    payload = msg.payload.decode('ascii')
+    if payload.count('/') != 2:
+        return
+
+    print(f'Topic:{msg.topic}\nPayload:{payload}')
+
+    day = get_data_from_date(payload)
     day = reduce_data(day)
     day = data_to_json(day)
     print(day)
 
     # a single publish, this can also be done in loops, etc.
     client.publish(TOPIC, payload=day, qos=1)
-
-    print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
 
 
 def iniciate_MQTT():
@@ -79,7 +83,7 @@ def iniciate_MQTT():
     client = paho.Client(client_id=CLIENT_ID, userdata=None, protocol=paho.MQTTv31)
 
     # enable TLS for secure connection
-    client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
+    # client.tls_set(tls_version=mqtt.client.ssl.PROTOCOL_TLS)
     # set username and password
     client.username_pw_set(USERNAME, PASSWORD)
     # connect to HiveMQ Cloud on port 8883 (default for MQTT)
