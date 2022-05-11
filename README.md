@@ -1,7 +1,8 @@
 # PowerConsumption
-Projeto para a criação de um dataset de consumo de energia residencial
+Project for the creation of a residential energy consumption dataset
 
-O arduino fica conectado via USB a um raspberry Pi que será o servidor deste projeto. Os arquivos read_arduino.py e send_data.py precisam estar rodando para o projeto funcionar, o arquivo check_data.py só deverá ser rodado quando houver uma suspeita de que houve queda de energia.
+The Arduino is connected via USB to a Raspberry Pi that will be the server for this project. The files read_arduino.py and send_data.py need to be running for the project to work, the file check_data.py should only be run when there is a suspicion that there was a power outage.
 
-Primeiramente o read_arduino.py requisita o arduino a medida de potência sendo consumida naquele instante e salva no dataset.txt 
-O send_data.py cuida da comunição MQTT para enviar as informações do dataset de um dia específico ao aplicativo de celular (WIP)
+First, read_arduino.py requests the arduino to measure the power being consumed at that moment and saves it in the dataset.txt
+
+The send_data.py takes care of the MQTT communication to send the dataset information of a specific day to the mobile application (WIP). We are using the mosquitto MQTT Broker
