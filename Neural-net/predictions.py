@@ -1,6 +1,4 @@
-import os
 import random
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 from keras.models import load_model
 import read_dataset
 import numpy as np
