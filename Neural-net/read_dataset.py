@@ -12,7 +12,7 @@ def read_dataset(points=144, days=1357):  # returns a python list of 2 dimension
     per = 1440 / points
     mean = 0  # calculates the mean of the 'extra' points
 
-    with open('./household_power_consumption.txt', 'r') as file:
+    with open('./cleaned_dataset.txt', 'r') as file:
         content = file.read().splitlines()
         last_date = None
 
