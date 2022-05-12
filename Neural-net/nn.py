@@ -1,5 +1,3 @@
-import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 import read_dataset as rds
 from keras.preprocessing.sequence import TimeseriesGenerator
 from keras.models import Sequential
