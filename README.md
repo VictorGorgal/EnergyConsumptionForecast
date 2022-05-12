@@ -1,4 +1,4 @@
-# PowerConsumption
+# Energy Consumption Forescast
 Project for the creation of a residential energy consumption dataset using a raspberry pi as the MQTT Broker together with an LSTM deep neural network in the mobile app to analyze and displat the data privately.
 
 Directories:  
