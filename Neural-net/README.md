@@ -8,3 +8,6 @@ It is possible to visualy see the data separated in each day with the read_datas
 
 The training of the neural network is done in the nn.py  
 New predictions can be made using the prediction.py
+
+New prediction example (dotted line):  
+![image](https://user-images.githubusercontent.com/94933775/168108476-2b1e36c3-1c0d-4865-a110-7ad95e09c36a.png)
