@@ -1,5 +1,5 @@
 # Energy Consumption Forescast
-Project for the creation of a residential energy consumption dataset using a raspberry pi as the MQTT Broker together with an LSTM deep neural network in the mobile app to analyze and display the data privately.
+Project for the creation of a residential energy consumption dataset using a raspberry pi as the MQTT Broker together with an LSTM deep neural network running on a mobile app to analyze and display the data privately.
 
 Directories:  
 - Arduino/  - code running on a arduino connected via UBS to the Raspberry Pi  
