@@ -2,7 +2,7 @@
 Project for the creation of a residential energy consumption dataset using a raspberry pi as the MQTT Broker together with an LSTM deep neural network running on a mobile app to analyze and display the data privately.
 
 Directories:  
-- Arduino/  - code running on a arduino connected via USB to the Raspberry Pi  
+- Arduino/Arduino.ino  - code running on a arduino connected via USB to the Raspberry Pi  
 - Neural-net/  - all the files necessary for the creation of the neural network  
 - Raspberry/  - all the files that are currently on the Rasp  
 - SmartLabApp.zip  - Android Studio project for the mobile app
