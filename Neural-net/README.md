@@ -6,9 +6,13 @@ Due to some days in the dataset having missing lines, there was a need to clean 
 It is possible to visualy see the data separated in each day with the read_dataset.py  
 ![image](https://user-images.githubusercontent.com/94933775/168104463-d8ed6fdd-d7bf-4d6b-bb41-2515032c7d74.png)
 
-The training of the neural network is done in the nn.py  
-Model parameters saved in main_model.h5  
-New predictions can be made using the prediction.py
-
 New prediction example (dotted line):  
 ![image](https://user-images.githubusercontent.com/94933775/168108476-2b1e36c3-1c0d-4865-a110-7ad95e09c36a.png)
+
+# Files 
+- nn.py was used to train the neural network  
+- main_model.h5 is the saved neural network
+- prediction.py is used to make new predictions using past data
+
+# To-do
+- None
