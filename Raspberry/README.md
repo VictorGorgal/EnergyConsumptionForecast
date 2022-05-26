@@ -1,3 +1,4 @@
+# Files
 read_arduino.py and send_data.py need to be running for the project to work.
 
 check_data.py should only be run when there is a suspicion that there was a power outage.
